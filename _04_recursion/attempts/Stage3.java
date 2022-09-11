@@ -11,12 +11,41 @@ public class Stage3 {
 	 * note: the least significant digit is at location 1, the secon-least significant digit is at location 2, and so on.
 	 */
 	public static int removeDigit(int n, int loc) {
-		return 0; //to be completed
+		int temp = n % 10;
+		if(loc == 1){
+			n = n/10;
+			return removeDigit(n,loc-1);
+		}
+		else if(n==0){
+			return 0;
+		}
+		else {
+			n = n/10;
+			return temp  + (removeDigit(n, loc-1)*10);
+		}
+
 	}
 
 	
 	public static double powerV2(int x, int n) {
-		return 0; //to be completed
+		if(n>=0) {
+			if (n == 0) {
+				return 1;
+			} else {
+				return x * powerV2(x, n - 1);
+			}
+		}
+		else{
+			n = n * -1;
+			double ans = 0;
+			if (n == 0) {
+				return 1;
+			} else {
+				ans = x * powerV2(x, n - 1);
+				return (1 / ans);
+			}
+		}
+
 	}
 
 	/**
@@ -30,6 +59,13 @@ public class Stage3 {
 	 * convert(1905, 8) returns "3561" since 1905 in base-8 is 3561 (3*512 + 5*64 + 6*8 + 1*1 = 1905)
 	 */
 	public static String convert(int n, int destBase) {
+//		int ans = 0;
+//		if (ans == n){
+//			String str = "123";
+//		}
+//		else{
+//
+//		}
 		return "0"; //to be completed
 	}
 
@@ -64,6 +100,7 @@ public class Stage3 {
 	 * @return true if s1 and s2 are anagrams of each other, false otherwise
 	 */
 	public static boolean areAnagrams(String s1, String s2) {
+
 		return false; //to be completed
 	}
 
@@ -92,6 +129,11 @@ public class Stage3 {
 	 * @return
 	 */
 	public static double evaluatePolynomial(int[] coefficients, int maxDegree, int xValue) {
-		return 0; //to be completed
+		if (maxDegree==-1){
+			return 0;
+		}
+
+		int sum = coefficients[maxDegree] * Stage1.power(xValue, maxDegree);
+		return sum + evaluatePolynomial(coefficients,maxDegree-1, xValue);
 	}
 }

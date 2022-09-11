@@ -30,6 +30,7 @@ public class Stage4 {
 		}
 	}
 
+
 	/**
 	 * 
 	 * @param x
@@ -38,7 +39,14 @@ public class Stage4 {
 	 * should have O(log n) complexity, not O(n) complexity
 	 */
 	public static int fastPower(int x, int n) {
-		return 0;
+		int temp;
+		if( n == 0)
+			return 1;
+		temp = fastPower(x, n / 2);
+		if (n % 2 == 0)
+			return temp*temp;
+		else
+			return x*temp*temp;
 	}
 
 	/**
@@ -63,6 +71,7 @@ public class Stage4 {
 	 * return the permutation at index k
 	 */
 	public static String getPermutation(int n, int k) {
+		String s = getString(n);
 		return null; //to be completed
 	}
 
@@ -77,7 +86,15 @@ public class Stage4 {
 	 * if data = {10,70,20,90}, start = 0, target = 60, return false
 	 */
 	public static boolean addsUpTo(int[] data, int start, int target) {
-		return false;
+		//System.out.println(target);
+		if (target==0){
+			return true;
+		}
+		if(data.length == start)
+			return false;
+		int val = data[start];
+		return (addsUpTo(data, start + 1, target-val) || addsUpTo(data, start + 1, target )); //don't use the number
+
 	}
 
 	/**
@@ -99,8 +116,18 @@ public class Stage4 {
 	 *  
 	 *  You CAN create a helper method
 	 */
+
 	public static int waysAddsUpTo(int[] data, int start, int target) {
-		return 0;
+		System.out.println(target);
+
+		if (target==0){
+			return 1;
+		}
+		if(data.length == start) {
+			return 0;
+		}
+		int val = data[start];
+		return (waysAddsUpTo(data, start + 1, target-val) + waysAddsUpTo(data, start + 1, target ));
 	}
 
 	/**
